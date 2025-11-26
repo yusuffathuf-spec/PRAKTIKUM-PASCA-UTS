@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Belajar Javascript</title>
+    <style>
+        /* PERBAIKAN 1: Selector CSS harus menargetkan elemen HTML, 
+           misalnya menggunakan #kotak1 atau body, bukan hanya `{}` */
+        #kotak1 {
+            width: 250px;
+            padding: 10px;
+            border: 2px solid blue;
+            background-color: #f0f8ff;
+        }
+    </style>
+    <script>
+        function jumlahkan() {
+            let bil1El = document.getElementById("bil1");
+            let bil2El = document.getElementById("bil2");
+            let messageEl = document.getElementById("message");
+
+            let bil1 = Number(bil1El.value);
+            let bil2 = Number(bil2El.value);
+
+            if (isNaN(bil1) || isNaN(bil2)) {
+                messageEl.textContent = "Masukkan angka yang valid di kedua kotak input.";
+                document.getElementById("hasil").textContent = "—";
+                return;
+            }
+
+            let hasil = bil1 + bil2;
+
+            let tampilHasil = Number.isInteger(hasil) ? hasil : hasil.toFixed(2);
+            document.getElementById("hasil").textContent = tampilHasil;
+            messageEl.textContent = ""; 
+
+            // PERBAIKAN 2: String template (backtick) di console.log tidak ada di kode asli
+            console.log(`Hasil: ${bil1} + ${bil2} = ${tampilHasil}`);
+        }
+        function makepink(){
+            let area_kotak1 = document.getElementById("kotak1");
+            area_kotak1.style.backgroundColor = "#ffd6e8"; 
+        }
+        function run(){
+            alert("selamat datang di kalkulator sederhana");
+        }
+    </script>
+</head>
+<body onload="run(); makepink();">
+    <h1>Kalkulator Sederhana</h1>
+    <div id="kotak1">
+        <label>Bilangan 1 : </label>
+        <input type="number" id="bil1" value="0" onkeydown="if(event.key==='Enter'){jumlahkan()}" />
+        <br>+
+        <br>
+        <label>Bilangan 2 : </label>
+        <input type="number" id="bil2" value="0" onkeydown="if(event.key==='Enter'){jumlahkan()}" />
+        <br><br>
+        <button onclick="jumlahkan()">Hitung</button>
+        <hr />
+        <div><strong>Hasil Penjumlahan:</strong> <span id="hasil">0</span></div>
+        <div id="message" style="color:darkred; margin-top:6px;"></div>
+    </div>
+</body>
+</html>
